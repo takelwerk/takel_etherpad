@@ -1,0 +1,10 @@
+---
+- name: restart etherpad
+  systemd:
+    name: etherpad
+    state: restarted
+  notify: wait for etherpad port
+
+- name: wait for etherpad port
+  wait_for:
+    port: "{{ takel_etherpad_port }}"
